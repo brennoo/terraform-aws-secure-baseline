@@ -85,6 +85,11 @@ variable "use_external_audit_log_bucket" {
   default     = false
 }
 
+variable "allow_cross_account_vpc_flow_logs_push" {
+  description = "A boolean that indicates whether to allow cross account to push vpc flow logs to current account audit bucket."
+  default     = false
+}
+
 # --------------------------------------------------------------------------------------------------
 # Variables for iam-baseline module.
 # --------------------------------------------------------------------------------------------------

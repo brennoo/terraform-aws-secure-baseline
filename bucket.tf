@@ -232,7 +232,8 @@ data "aws_iam_policy_document" "audit_log_flow_logs" {
     }
     resources = concat(
       ["${local.audit_log_flow_logs_destination}/AWSLogs/${var.aws_account_id}/*"],
-      local.is_master_account ? [for account in var.member_accounts : "${local.audit_log_flow_logs_destination}/AWSLogs/${account.account_id}/*"] : []
+      local.is_master_account ? [for account in var.member_accounts : "${local.audit_log_flow_logs_destination}/AWSLogs/${account.account_id}/*"] : [],
+      var.allow_cross_account_vpc_flow_logs_push ? ["${local.audit_log_flow_logs_destination}/*"] : []
     )
     condition {
       test     = "StringEquals"
